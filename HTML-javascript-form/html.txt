@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <title>Feedback</title>
+  <style>
+    label {	float: left;
+			width: 150px;}
+      #container{
+          width: 700px;
+          margin: auto;
+          background-color: beige;
+      } 
+      main{
+          padding: 50px;
+      }
+	  .checkforBT{
+		  display: none;
+	  }
+	  .checkforLA{
+		  display: none;
+	  }
+	  .checkforCa{
+		  display: inline;
+	  }
+	  .checkforref{
+		  display: none;
+	  }
+	  .checkformocha{
+		  display: none;
+	  }
+	  .conTable{
+		  position: fixed;
+		  display: none;
+		  background-color:burlywood;
+		  width: 400px;
+	  }
+  </style>
+ </head>
+ <body>
+ <div id="container">
+	
+	 <main>
+	 <h2>Feeback</h2>
+	 <h3>Love something? Hate something? Let us know!</h3>
+		 Note : Fields marked with an asterisk(*) are mandatory
+		 <br><br>
+		 <form method="post" novalidate onsubmit="submitForm();return false">
+			<label>Title*:</label>
+			<input type="radio" name="title" id="miss" value="miss" required="required" onclick="checkTitle()"/>Miss
+			<input type="radio" name="title" id="mr" value="mr" required="required" onclick="checkTitle()"/>Mr.
+			<input type="radio" name="title" id="mrs" value="mrs" required="required" onclick="checkTitle()"/>Mrs.
+			<span id="titleSpan"></span>
+			<br><br>
+
+
+			<label for="firstName">First Name*:</label>
+			<input type="text" name="firstName" id="firstName" placeholder="First Name" onblur="checkfName()"/>	
+			<span id="fNameSpan"></span>
+			<br><br>
+			
+
+			<label for="lastName">Last Name*:</label>
+			<input type="text" name="lastName" id="lastName" placeholder="Last Name" onblur="checklName()"/>
+			<span id="lNameSpan"></span>
+			<br><br>
+			
+
+			<label for="emailId">Email Id*:</label>
+			<input type="text" name="emailId" id="emailId" placeholder="yourname@domain.com" onblur="checkEmail()"/>
+			<span id="emailSpan"></span>
+			<br><br>
+			
+
+			<label for="phoneNumber">Phone Number*:</label>
+			<input type="text" name="phoneNumber" id="phoneNumber" placeholder="xxx-xxx-xxxx" onblur="checkPhone()"/>
+			<span id="phoneSpan"></span>
+			<br><br>
+			
+            <label for="zipcode">ZipCode*:</label>
+			<input type="text" name="zipcode" id="zipcode" placeholder="xxxxxx" onblur="checkZip()"/>
+			<span id="zipSpan"></span>
+			<br><br>
+
+			<label for="drink">Drinks</label>
+			<br>
+			<select size="1" name="drink" id="drink" style="width: 200px;" onchange="getTable()">
+				<option value="Black Tea">Hot Black Tea-Keemun</option>
+				<option value="Latte">Caramel Latte</option>
+				<option value="refresher">Pink Drink</option>
+				<option value="mocha">Hot Mocha</option>
+				<option value="cappuccino" selected>Pumpkin Cappuccino</option>
+			</select>
+			<br>
+			<div class="checkforBT">
+			<input type="checkbox" value="Large Drink(75¢ extra)">Large Drink(75¢ extra)
+			<input type="checkbox" value="Medium Drink(25¢ extra)">Medium Drink(25¢ extra)
+			</div>
+			<div class="checkforLA">
+			<input type="checkbox" value="Soy Milk(25¢ extra)">Soy Milk(25¢ extra)
+			<input type="checkbox" value="Cream top(25¢ extra)">Cream top(25¢ extra)
+			</div>
+			<div class="checkforref">
+			<input type="checkbox" value="Extra Ice">Extra Ice
+			<input type="checkbox" value="Extra Strawberry(85¢ extra)">Extra Strawberry(85¢ extra)
+			</div>
+			<div class="checkformocha">
+			<input type="checkbox" value="Almond Cream Top(25¢ extra)">Almond Cream Top(25¢ extra)
+			<input type="checkbox" value="Large Drink(75¢ extra)">Large Drink(75¢ extra)
+			</div>
+			<div class="checkforCa">
+			<input type="checkbox" name="CAOption" value="Skimmed Milk(25¢ extra)">Skimmed Milk(25¢ extra)
+			<input type="checkbox" name="CAOption" id="other" onclick="showOther()">Other
+			<input type="text" id="userinput" placeholder="input your choice" style="display: none;" onblur="showOther()">
+			<span id="otherSpan"></span>
+			</div>
+			<br><br>
+             
+            <label for="zipcode">How did you hear*:</label>
+			<input type='checkbox' name="source" value="facebook" onclick="checkSource()"/> Facebook
+            <input type='checkbox' name="source" value="google" onclick="checkSource()"/> Google
+            <input type='checkbox' name="source" value="yelp" onclick="checkSource()"/> Yelp 
+			<span id="sourceSpan"></span>
+			<br><br> 
+             
+			<label for="comments">Comments*:</label>
+			<textarea name="text" id="comments" placeholder="Your comments" rows="5" cols="25" onblur="checkComment()"></textarea>
+			<span id="commentsSpan"></span>
+			<br><br>
+			<input type="Submit">
+			<input type="Reset">
+			<br><br>
+		 </form>
+	 </main>
+	 <div id = "showTable" class="conTable" title="Conformation">
+		<p align="center">Please Confirm Your Submit</p>
+		<table align="center" border="1px solid #ccc">
+			<tr>
+				<td>name</td><td id="tableName"></td>
+			</tr>
+			<tr>
+				<td>Email</td><td id="tableEmail"></td>
+			</tr>
+			<tr>
+				<td>Phone</td><td id="tablePhone"></td>
+			</tr>
+			<tr>
+				<td>Zip Code</td><td id="tableZip"></td>
+			</tr>
+			<tr>
+				<td>Drinks</td><td id="tableDrinks"></td>
+			</tr>
+			<tr>
+				<td>Source</td><td id="tableSource"></td>
+			</tr>
+			<tr>
+				<td>Comments</td><td id="tableComment"></td>
+			</tr>
+		</table>
+		<br><br>
+		<center><button>Confirm</button></center>
+	</div>
+ </div>
+
+ <script src="script.js"></script> 
+
+ </body>
+</html>
